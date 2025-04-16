@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import router from './router'; 
 import dotenv from 'dotenv';
 import { connectDB } from './db';
 connectDB();
@@ -29,4 +30,4 @@ server.listen(3000, () => {
 });
 dotenv.config();
 
- 
+ app.use('/', router());  
