@@ -5,7 +5,7 @@ import { getUserByEmail, createUser } from '../db/user';
 import { authentication, random } from '../helpers';
 
 export const register = async (req: express.Request, res: express.Response) => {
-    try{
+    try{ 
      const { email, password, username } =req.body;
      if(!email || !password ||!username){
         return res.sendStatus(400)  
