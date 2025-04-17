@@ -5,29 +5,35 @@ import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import router from './router'; 
 import dotenv from 'dotenv';
+
+import router from './router';
 import { connectDB } from './db';
+
+// Load environment variables early
+dotenv.config();
+
+// Connect to database
 connectDB();
 
-
-
 const app = express();
+
 app.use(cors({
-  credentials: true
+  credentials: true,
+  origin: 'http://localhost:3000', // Optional: specify origin for stricter control
 }));
 
- 
 app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
 
- 
-const server = http.createServer(app); 
+// Mount routes
+app.use('/', router());
 
-server.listen(3000, () => { 
-  console.log('Server running on port 3000'); 
+// Start the server
+const server = http.createServer(app);
+
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+  console.log(`🌐 Server running on http://localhost:${PORT}`);
 });
-dotenv.config();
-
- app.use('/', router());    

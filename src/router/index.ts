@@ -5,8 +5,9 @@ import users from './users';
 const router = express.Router();
 
 export default (): express.Router => {
-  authentication(router); // <-- This line is crucial 
+  authentication(router);
   users(router);
-  return router;   
-};   
+  return router;
+};
+
         
