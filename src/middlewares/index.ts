@@ -3,6 +3,7 @@ import { get, merge } from 'lodash';
 import { getUserBySessionToken } from '../db/user';
 
 // 🛡️ Middleware: Verifies if the user is authenticated
+
 export const isAuthenticated = async (
   req: express.Request,
   res: express.Response,
@@ -10,6 +11,10 @@ export const isAuthenticated = async (
 ): Promise<void> => {
   try {
     const sessionToken = req.cookies['KENZO-AUTH'];
+    console.log("Session Token Received in Middleware:", sessionToken);
+ 
+
+
 
     if (!sessionToken) {
       res.status(403).json({ error: 'No session token provided' });
@@ -33,6 +38,8 @@ export const isAuthenticated = async (
   }
 };
 
+
+
 // 🔐 Middleware: Verifies if the user is accessing their own resource
 export const isOwner = async (
   req: express.Request,
@@ -42,6 +49,8 @@ export const isOwner = async (
   try {
     const { id } = req.params;
     const currentUserId = get(req, 'identity._id') as string;
+
+
 
     if (!currentUserId) {
       res.status(403).json({ error: 'User not authenticated' });

@@ -67,6 +67,3 @@ export const updateUser = async (
     return res.status(500).json({ error: 'Failed to update user' });
   }
 };
-
-
-

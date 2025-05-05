@@ -10,8 +10,8 @@ import dotenv from 'dotenv';
 import router from './router';
 import { connectDB } from './db';
 
-// Load environment variables early
-dotenv.config();
+// Load environment variables early  
+dotenv.config(); 
 
 // Connect to database
 connectDB();
@@ -20,14 +20,22 @@ const app = express();
 
 app.use(cors({
   credentials: true,
-  origin: 'http://localhost:3000', // Optional: specify origin for stricter control
+  origin: ['http://127.0.0.1:5500', 'http://localhost:5500'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type','Authorization']
 }));
+app.options('*', cors()); // Handle all OPTIONS requests
 
+  
+
+
+
+ 
 app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-// Mount routes
+// Mount routes   
 app.use('/', router());
 
 // Start the server
