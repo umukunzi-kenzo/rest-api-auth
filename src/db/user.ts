@@ -8,6 +8,10 @@ const userSchema = new mongoose.Schema({
     salt: { type: String, select: false },
     sessionToken: { type: String, select: false },
   },
+  lastActive: { type: Date },
+}, 
+{ 
+  timestamps: true    
 });
 
 export const userModel = mongoose.model('user', userSchema);

@@ -20,7 +20,7 @@ const app = express();
 
 app.use(cors({
   credentials: true,
-  origin: ['http://127.0.0.1:5500', 'http://localhost:5500'],
+  origin: ['http://127.0.0.1:5500','http://127.0.0.1:5501', 'http://localhost:5500'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type','Authorization']
 }));
@@ -28,9 +28,7 @@ app.options('*', cors()); // Handle all OPTIONS requests
 
   
 
-
-
- 
+  
 app.use(compression());
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -45,3 +43,4 @@ const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log(`🌐 Server running on http://localhost:${PORT}`);
 });
+  

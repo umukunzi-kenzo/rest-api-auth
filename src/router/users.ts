@@ -1,6 +1,9 @@
 import express from 'express';
 import { deleteUser, getAllUsers, updateUser } from '../controllers/users';
 import { isAuthenticated, isOwner } from '../middlewares'; // ✅ Make sure this path matches your folder name
+ 
+
+
 
 /**
  * Defines user-related routes.
@@ -17,4 +20,3 @@ export default (router: express.Router): void => {
   // ✏️ Update a user (must be authenticated AND the account owner)
   router.put('/users/:id',isAuthenticated, isOwner, updateUser);// temporarly removed isOwner and isAuthenticated
 };
-   
